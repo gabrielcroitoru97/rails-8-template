@@ -74,6 +74,7 @@ group :development do
   gem "pry-rails"
   gem "rails-erd"
   gem "rufo"
+  gem "dev_toolbar"
 end
 
 group :development, :test do
