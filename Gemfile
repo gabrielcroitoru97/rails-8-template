@@ -65,6 +65,7 @@ gem "htmlbeautifier"
 gem "http"
 gem "table_print"
 gem "simple_form"
+gem "devise"
 
 group :development do
   gem "annotate"
