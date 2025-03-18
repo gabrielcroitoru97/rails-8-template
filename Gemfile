@@ -71,7 +71,6 @@ group :development do
   gem "annotate"
   gem "better_errors"
   gem "binding_of_caller"
-  gem "grade_runner"
   gem "pry-rails"
   gem "rails-erd"
   gem "rufo"
@@ -79,6 +78,7 @@ end
 
 group :development, :test do
   gem "rspec-rails", "~> 6.0.0"
+  gem "grade_runner", "~> 0.0.13"
 end
 
 group :test do
