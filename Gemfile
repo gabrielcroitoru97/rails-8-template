@@ -68,7 +68,7 @@ gem "simple_form"
 gem "devise"
 
 group :development do
-  gem "annotate"
+  gem "annotaterb"
   gem "better_errors"
   gem "binding_of_caller"
   gem "pry-rails"
@@ -77,7 +77,7 @@ group :development do
 end
 
 group :development, :test do
-  gem "rspec-rails", "~> 6.0.0"
+  gem "rspec-rails", "~> 7.0.0"
   gem "grade_runner", "~> 0.0.13"
 end
 
