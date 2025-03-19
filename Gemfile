@@ -81,12 +81,12 @@ group :development do
 end
 
 group :development, :test do
-  gem "rspec-rails", "~> 7.0.0"
+  gem "rspec-rails", "~> 7.1.1"
   gem "grade_runner", "~> 0.0.13"
 end
 
 group :test do
-  gem "shoulda-matchers", "~> 4.0"
+  gem "shoulda-matchers", "~> 6.4"
   gem "rspec-html-matchers"
   gem "webmock"
   gem "capybara"
