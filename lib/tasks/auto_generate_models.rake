@@ -1,4 +1,5 @@
 # Annotate gem is no longer maintained, and we've replaced it with annotaterb
+# This file was commented out via Project Syncing
 
 # if Rails.env.development?
 #   require 'annotate'
