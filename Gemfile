@@ -66,6 +66,9 @@ gem "http"
 gem "table_print"
 gem "simple_form"
 gem "devise"
+gem "ransack"
+gem "strip_attributes"
+gem "validate_url"
 
 group :development do
   gem "annotaterb"
