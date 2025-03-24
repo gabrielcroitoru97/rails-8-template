@@ -37,6 +37,14 @@ RSpec.configure do |config|
   # Suppress RSpec warnings about potential false positives
   RSpec::Expectations.configuration.on_potential_false_positives = :nothing
 
+  # Devise sign in helpers
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :view
+  # Rails 8 issue: https://github.com/heartcombo/devise/issues/5705
+  config.before(:each, type: :controller) do
+    Rails.application.reload_routes_unless_loaded
+  end
+
   # Shoulda matchers for association accessor specs
   config.include(Shoulda::Matchers::ActiveRecord, type: :model)
 
