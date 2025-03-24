@@ -88,6 +88,7 @@ end
 group :test do
   gem "shoulda-matchers", "~> 6.4"
   gem "rspec-html-matchers"
+  gem "rails-controller-testing"
   gem "webmock"
   gem "capybara"
   gem "selenium-webdriver", "~> 4.11.0"
