@@ -13,9 +13,11 @@ FileUtils.chdir APP_ROOT do
   # Add necessary setup steps to this file.
 
   puts "== Installing dependencies =="
-  # Explicitly set bundle path for consistency with Docker image
-  ENV["BUNDLE_PATH"] ||= "/home/student/.bundle"
-  system("bundle config get path") # Debug output to see the bundle path
+  if ENV["CODESPACE_NAME"]
+    # Explicitly set bundle path for consistency with Docker image
+    ENV["BUNDLE_PATH"] ||= "/home/student/.bundle"
+    system("bundle config get path") # Debug output to see the bundle path
+  end
   system("bundle check") || system!("bundle install")
 
   # puts "\n== Copying sample files =="
