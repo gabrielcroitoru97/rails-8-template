@@ -15,6 +15,14 @@ Rails.application.configure do
   # loading is working properly before deploying your code.
   config.eager_load = ENV["CI"].present?
 
+  # Configure CarrierWave for testing
+  CarrierWave.configure do |config|
+    config.storage = :file
+    config.enable_processing = false
+    config.root = Rails.root.join("tmp")
+    config.cache_dir = Rails.root.join("tmp/carrierwave")
+  end
+
   # Configure public file server for tests with cache-control for performance.
   config.public_file_server.headers = { "cache-control" => "public, max-age=3600" }
 
