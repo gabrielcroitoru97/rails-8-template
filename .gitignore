@@ -36,3 +36,6 @@
 # AppDev files
 examples.txt
 .vscode/.ltici_apitoken.yml
+
+# Ignore public uploads
+/public/uploads/*
