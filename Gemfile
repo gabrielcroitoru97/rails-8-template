@@ -71,6 +71,7 @@ gem "ransack"
 gem "strip_attributes"
 gem "validate_url"
 gem "carrierwave"
+gem "cloudinary"
 
 group :development do
   gem "annotaterb"
