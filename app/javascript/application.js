@@ -2,6 +2,10 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
+// Change to true to allow Turbo
+Turbo.session.drive = false
+
+// Allow UJS alongside Turbo
 import jquery from "jquery";
 window.jQuery = jquery;
 window.$ = jquery;
