@@ -81,6 +81,7 @@ group :development do
   gem "pry-rails"
   gem "rails-erd"
   gem "rufo"
+  gem "haikunator"
 end
 
 group :development, :test do
