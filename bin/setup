@@ -30,4 +30,7 @@ FileUtils.chdir APP_ROOT do
 
   puts "\n== Removing old logs and tempfiles =="
   system! "bin/rails log:clear tmp:clear"
+
+  puts "\n== Checking for JavaScript tests and installing chromedriver if needed =="
+  system! "bin/chromedriver_check"
 end
