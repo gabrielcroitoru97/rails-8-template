@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Location types" %>
+
+<h1>Location types</h1>
+
+<div id="location_types">
+  <% @location_types.each do |location_type| %>
+    <%= render location_type %>
+    <p>
+      <%= link_to "Show this location type", location_type %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New location type", new_location_type_path %>

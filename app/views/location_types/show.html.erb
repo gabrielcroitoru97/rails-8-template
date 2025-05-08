@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @location_type %>
+
+<div>
+  <%= link_to "Edit this location type", edit_location_type_path(@location_type) %> |
+  <%= link_to "Back to location types", location_types_path %>
+
+  <%= button_to "Destroy this location type", @location_type, method: :delete %>
+</div>

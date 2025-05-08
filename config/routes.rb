@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :location_types
+  resources :favorite_places
+  resources :images
+  resources :comments
+  resources :ratings
+  devise_for :users
+  resources :work_locations
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

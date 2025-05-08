@@ -1,0 +1,12 @@
+<% content_for :title, "Editing location type" %>
+
+<h1>Editing location type</h1>
+
+<%= render "form", location_type: @location_type %>
+
+<br>
+
+<div>
+  <%= link_to "Show this location type", @location_type %> |
+  <%= link_to "Back to location types", location_types_path %>
+</div>

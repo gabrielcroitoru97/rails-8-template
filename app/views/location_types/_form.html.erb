@@ -1,0 +1,22 @@
+<%= form_with(model: location_type) do |form| %>
+  <% if location_type.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(location_type.errors.count, "error") %> prohibited this location_type from being saved:</h2>
+
+      <ul>
+        <% location_type.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :descriptor, style: "display: block" %>
+    <%= form.text_field :descriptor %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

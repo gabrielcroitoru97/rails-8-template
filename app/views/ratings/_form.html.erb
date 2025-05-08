@@ -1,0 +1,62 @@
+<%= form_with(model: rating) do |form| %>
+  <% if rating.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
+
+      <ul>
+        <% rating.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.label :location_id, style: "display: block" %>
+    <%= form.number_field :location_id %>
+  </div>
+
+  <div>
+    <%= form.label :overall_rating, style: "display: block" %>
+    <%= form.number_field :overall_rating %>
+  </div>
+
+  <div>
+    <%= form.label :content, style: "display: block" %>
+    <%= form.textarea :content %>
+  </div>
+
+  <div>
+    <%= form.label :wifi_rating, style: "display: block" %>
+    <%= form.number_field :wifi_rating %>
+  </div>
+
+  <div>
+    <%= form.label :crowding_rating, style: "display: block" %>
+    <%= form.number_field :crowding_rating %>
+  </div>
+
+  <div>
+    <%= form.label :noise_rating, style: "display: block" %>
+    <%= form.number_field :noise_rating %>
+  </div>
+
+  <div>
+    <%= form.label :outlet_rating, style: "display: block" %>
+    <%= form.number_field :outlet_rating %>
+  </div>
+
+  <div>
+    <%= form.label :comfort_and_workspace_rating, style: "display: block" %>
+    <%= form.number_field :comfort_and_workspace_rating %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

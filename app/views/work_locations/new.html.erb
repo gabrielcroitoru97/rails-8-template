@@ -1,0 +1,11 @@
+<% content_for :title, "New work location" %>
+
+<h1>New work location</h1>
+
+<%= render "form", work_location: @work_location %>
+
+<br>
+
+<div>
+  <%= link_to "Back to work locations", work_locations_path %>
+</div>

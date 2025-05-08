@@ -1,0 +1,32 @@
+<%= form_with(model: favorite_place) do |form| %>
+  <% if favorite_place.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(favorite_place.errors.count, "error") %> prohibited this favorite_place from being saved:</h2>
+
+      <ul>
+        <% favorite_place.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.label :place_id, style: "display: block" %>
+    <%= form.number_field :place_id %>
+  </div>
+
+  <div>
+    <%= form.label :note, style: "display: block" %>
+    <%= form.text_field :note %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

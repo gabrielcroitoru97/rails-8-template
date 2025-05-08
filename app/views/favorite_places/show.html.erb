@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @favorite_place %>
+
+<div>
+  <%= link_to "Edit this favorite place", edit_favorite_place_path(@favorite_place) %> |
+  <%= link_to "Back to favorite places", favorite_places_path %>
+
+  <%= button_to "Destroy this favorite place", @favorite_place, method: :delete %>
+</div>

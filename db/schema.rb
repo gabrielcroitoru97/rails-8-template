@@ -10,9 +10,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_13_202311) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_08_012217) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "commenter_id"
+    t.integer "location_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favorite_places", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "place_id"
+    t.string "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.integer "location_id"
+    t.integer "poster_id"
+    t.string "picture"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "location_types", force: :cascade do |t|
+    t.string "descriptor"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "location_id"
+    t.integer "overall_rating"
+    t.text "content"
+    t.integer "wifi_rating"
+    t.integer "crowding_rating"
+    t.integer "noise_rating"
+    t.integer "outlet_rating"
+    t.integer "comfort_and_workspace_rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "solid_cable_messages", force: :cascade do |t|
     t.binary "channel", null: false
@@ -154,6 +198,64 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_13_202311) do
     t.index ["expires_at"], name: "index_solid_queue_semaphores_on_expires_at"
     t.index ["key", "value"], name: "index_solid_queue_semaphores_on_key_and_value"
     t.index ["key"], name: "index_solid_queue_semaphores_on_key", unique: true
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "username"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "work_locations", force: :cascade do |t|
+    t.integer "location_type_id"
+    t.integer "wifi_speed_average"
+    t.string "address"
+    t.string "phone_number"
+    t.string "website"
+    t.string "city"
+    t.string "state"
+    t.string "zip_code"
+    t.string "longitude"
+    t.string "latitude"
+    t.text "description"
+    t.string "name"
+    t.float "average_rating"
+    t.integer "owner_id"
+    t.integer "crowding_average"
+    t.integer "noise_average"
+    t.boolean "requires_purchase"
+    t.boolean "membership"
+    t.time "sunday_opening_time"
+    t.time "monday_opening_time"
+    t.time "tuesday_opening_time"
+    t.time "wednesday_opening_time"
+    t.time "thursday_opening_time"
+    t.time "friday_opening_time"
+    t.time "saturday_opening_time"
+    t.time "sunday_closing_time"
+    t.time "monday_closing_time"
+    t.time "tuesday_closing_time"
+    t.time "wednesday_closing_time"
+    t.time "thursday_closing_time"
+    t.time "friday_closing_time"
+    t.time "saturday_closing_time"
+    t.boolean "sunday_closed"
+    t.boolean "monday_closed"
+    t.boolean "tuesday_closed"
+    t.boolean "wednesday_closed"
+    t.boolean "thursday_closed"
+    t.boolean "friday_closed"
+    t.boolean "saturday_closed"
+    t.integer "outlet_availability_average"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade

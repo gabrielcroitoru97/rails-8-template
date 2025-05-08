@@ -1,0 +1,11 @@
+<% content_for :title, "New favorite place" %>
+
+<h1>New favorite place</h1>
+
+<%= render "form", favorite_place: @favorite_place %>
+
+<br>
+
+<div>
+  <%= link_to "Back to favorite places", favorite_places_path %>
+</div>

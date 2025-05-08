@@ -1,0 +1,11 @@
+Implement bootstrap to make things looks better
+Make named routes and links
+Fix forms with new syntax
+make work locations table look ok
+make work location details page look ok
+add links for adding favorite and adding photos
+get sample data in
+set up ratings with overall averages
+
+start javascript re-writes
+
