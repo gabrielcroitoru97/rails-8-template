@@ -5,6 +5,27 @@
 <h1>Work locations</h1>
 
 <div id="work_locations">
+  <table id= work_locations_table>
+    <tr>
+      <th>Location Type</th>
+      <th>Name</th>
+      <th>Average Rating</th>
+      <th>Details</th>
+    </tr>
+
+    <% @work_locations.each do |work_location| %>
+      <tr>
+        <td><%= work_location.location_type.descriptor %></td>
+        <td><%= work_location.name %></td>
+        <td><%= work_location.average_rating %></td>
+        <td><%= link_to "Show", work_location %></td>
+      </tr>
+    <% end %>
+  
+  
+  
+  
+  
   <% @work_locations.each do |work_location| %>
     <%= render work_location %>
     <p>

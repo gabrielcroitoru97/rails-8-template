@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  root "work_locations#index"
   resources :location_types
   resources :favorite_places
   resources :images

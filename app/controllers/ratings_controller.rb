@@ -23,6 +23,17 @@ class RatingsController < ApplicationController
   def create
     @rating = Rating.new(rating_params)
 
+    the_work_location= WorkLocation.find(rating_params[:location_id])
+    @rating.user_id = current_user.id
+
+    the_work_location.average_rating = the_work_location.ratings.average(:overall_rating)
+    the_work_location.wifi_rating = the_work_location.ratings.average(:wifi_rating)
+    the_work_location.crowding_rating = the_work_location.ratings.average(:crowding_rating)
+    the_work_location.noise_rating = the_work_location.ratings.average(:noise_rating)
+    the_work_location.outlet_rating = the_work_location.ratings.average(:outlet_rating)
+    the_work_location.comfort_and_workspace_rating = the_work_location.ratings.average(:comfort_and_workspace_rating)
+    the_work_location.save!
+
     respond_to do |format|
       if @rating.save
         format.html { redirect_to @rating, notice: "Rating was successfully created." }

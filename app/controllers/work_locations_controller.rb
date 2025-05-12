@@ -22,6 +22,7 @@ class WorkLocationsController < ApplicationController
   # POST /work_locations or /work_locations.json
   def create
     @work_location = WorkLocation.new(work_location_params)
+    @work_location.owner = current_user
 
     respond_to do |format|
       if @work_location.save
