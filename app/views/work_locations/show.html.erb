@@ -3,6 +3,12 @@
 <%= render @work_location %>
 
 <div>
+  <h2>Ratings</h2>
+  <%= render "ratings/form", rating: Rating.new(location_id: @work_location.id)%>
+  <%= render @work_location.ratings %>
+</div>
+
+<div>
   <%= link_to "Edit this work location", edit_work_location_path(@work_location) %> |
   <%= link_to "Back to work locations", work_locations_path %>
 

@@ -11,49 +11,53 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.number_field :user_id %>
-  </div>
+<!--  <div>-->
+    <%#= form.label :user_id, style: "display: block" %>
+    <%#= form.number_field :user_id %>
+<!--  </div>-->
 
-  <div>
-    <%= form.label :location_id, style: "display: block" %>
-    <%= form.number_field :location_id %>
-  </div>
+<!--  <div>-->
+    <%#= form.label :location_id, style: "display: block" %>
+    <%#= form.number_field :location_id %>
+<!--  </div>-->
 
-  <div>
+
+  <%= form.hidden_field :location_id %>
+
+    <div>
     <%= form.label :overall_rating, style: "display: block" %>
-    <%= form.number_field :overall_rating %>
+    <%= form.select :overall_rating, options_for_select(1..5), {} %>
   </div>
+  
+  <div>
+    <%= form.label :wifi_rating, style: "display: block" %>
+    <%= form.select :wifi_rating, options_for_select(1..5), {} %>
+  </div>
+  
+  <div>
+    <%= form.label :crowding_rating, style: "display: block" %>
+    <%= form.select :crowding_rating, options_for_select(1..5), {} %>
+  </div>
+  
+  <div>
+    <%= form.label :noise_rating, style: "display: block" %>
+    <%= form.select :noise_rating, options_for_select(1..5), {} %>
+  </div>
+  
+  <div>
+    <%= form.label :outlet_rating, style: "display: block" %>
+    <%= form.select :outlet_rating, options_for_select(1..5), {} %>
+  </div>
+  
+  <div>
+    <%= form.label :comfort_and_workspace_rating, style: "display: block" %>
+    <%= form.select :comfort_and_workspace_rating, options_for_select(1..5), {} %>
+  </div>
+  
 
   <div>
     <%= form.label :content, style: "display: block" %>
     <%= form.textarea :content %>
-  </div>
-
-  <div>
-    <%= form.label :wifi_rating, style: "display: block" %>
-    <%= form.number_field :wifi_rating %>
-  </div>
-
-  <div>
-    <%= form.label :crowding_rating, style: "display: block" %>
-    <%= form.number_field :crowding_rating %>
-  </div>
-
-  <div>
-    <%= form.label :noise_rating, style: "display: block" %>
-    <%= form.number_field :noise_rating %>
-  </div>
-
-  <div>
-    <%= form.label :outlet_rating, style: "display: block" %>
-    <%= form.number_field :outlet_rating %>
-  </div>
-
-  <div>
-    <%= form.label :comfort_and_workspace_rating, style: "display: block" %>
-    <%= form.number_field :comfort_and_workspace_rating %>
   </div>
 
   <div>

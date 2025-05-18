@@ -58,8 +58,8 @@ class WorkLocation < ApplicationRecord
   validates :zip_code, presence: true
   validates :state, presence: true
   validates :name, presence: true
-  validates :longitude, presence: true
-  validates :latitude, presence: true
+  #validates :longitude, presence: true
+  #validates :latitude, presence: true
   validates :location_type_id, presence: true
   validates :city, presence: true
   validates :address, presence: true

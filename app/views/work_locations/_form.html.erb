@@ -1,8 +1,7 @@
-<%= form_with(model: work_location) do |form| %>
+<%= form_with(model: work_location, class: "container") do |form| %>
   <% if work_location.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(work_location.errors.count, "error") %> prohibited this work_location from being saved:</h2>
-
+    <div class="alert alert-danger">
+      <h4><%= pluralize(work_location.errors.count, "error") %> prohibited this work location from being saved:</h4>
       <ul>
         <% work_location.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,168 +10,90 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :location_type_id, style: "display: block" %>
-    <%= form.number_field :location_type_id %>
+  <div class="mb-3">
+    <%= form.label :location_type_id, class: "form-label" %>
+    <%= form.collection_select :location_type_id, LocationType.all, :id, :descriptor, { prompt: "Select a location type" }, class: "form-select" %>
   </div>
 
-  <div>
-    <%= form.label :address, style: "display: block" %>
-    <%= form.text_field :address %>
+  <div class="mb-3">
+    <%= form.label :address, class: "form-label" %>
+    <%= form.text_field :address, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :phone_number, style: "display: block" %>
-    <%= form.text_field :phone_number %>
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <%= form.label :city, class: "form-label" %>
+      <%= form.text_field :city, class: "form-control" %>
+    </div>
+    <div class="col-md-4">
+      <%= form.label :state, class: "form-label" %>
+      <%= form.text_field :state, class: "form-control" %>
+    </div>
+    <div class="col-md-4">
+      <%= form.label :zip_code, class: "form-label" %>
+      <%= form.text_field :zip_code, class: "form-control" %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :website, style: "display: block" %>
-    <%= form.text_field :website %>
+  <div class="mb-3">
+    <%= form.label :phone_number, class: "form-label" %>
+    <%= form.text_field :phone_number, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :city, style: "display: block" %>
-    <%= form.text_field :city %>
+  <div class="mb-3">
+    <%= form.label :website, class: "form-label" %>
+    <%= form.text_field :website, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :state, style: "display: block" %>
-    <%= form.text_field :state %>
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :zip_code, style: "display: block" %>
-    <%= form.text_field :zip_code %>
+  <div class="mb-3">
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_area :description, rows: 3, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.textarea :description %>
+  <div class="form-check mb-3">
+    <%= form.check_box :requires_purchase, class: "form-check-input" %>
+    <%= form.label :requires_purchase, class: "form-check-label" %>
   </div>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="form-check mb-3">
+    <%= form.check_box :membership, class: "form-check-input" %>
+    <%= form.label :membership, class: "form-check-label" %>
   </div>
 
+  <h5 class="mt-4 mb-2">Hours</h5>
 
-  <div>
-    <%= form.label :requires_purchase, style: "display: block" %>
-    <%= form.checkbox :requires_purchase %>
-  </div>
+  <%# One row per day with: Day | opening to closing | Closed checkbox %>
+  <% days = [
+    ['Sunday', :sunday_opening_time, :sunday_closing_time, :sunday_closed],
+    ['Monday', :monday_opening_time, :monday_closing_time, :monday_closed],
+    ['Tuesday', :tuesday_opening_time, :tuesday_closing_time, :tuesday_closed],
+    ['Wednesday', :wednesday_opening_time, :wednesday_closing_time, :wednesday_closed],
+    ['Thursday', :thursday_opening_time, :thursday_closing_time, :thursday_closed],
+    ['Friday', :friday_opening_time, :friday_closing_time, :friday_closed],
+    ['Saturday', :saturday_opening_time, :saturday_closing_time, :saturday_closed]
+  ] %>
 
-  <div>
-    <%= form.label :membership, style: "display: block" %>
-    <%= form.checkbox :membership %>
-  </div>
+  <% days.each do |label, open_sym, close_sym, closed_sym| %>
+    <div class="row align-items-center mb-2">
+      <div class="col-md-2 fw-bold"><%= label %></div>
+      <div class="col-md-4 d-flex align-items-center gap-2">
+        <%= form.time_field open_sym, class: "form-control" %>
+        <span>to</span>
+        <%= form.time_field close_sym, class: "form-control" %>
+      </div>
+      <div class="col-md-2 form-check">
+        <%= form.check_box closed_sym, class: "form-check-input" %>
+        <%= form.label closed_sym, "Closed", class: "form-check-label" %>
+      </div>
+    </div>
+  <% end %>
 
-  <div>
-    <%= form.label :sunday_opening_time, style: "display: block" %>
-    <%= form.time_field :sunday_opening_time %>
-  </div>
-
-  <div>
-    <%= form.label :monday_opening_time, style: "display: block" %>
-    <%= form.time_field :monday_opening_time %>
-  </div>
-
-  <div>
-    <%= form.label :tuesday_opening_time, style: "display: block" %>
-    <%= form.time_field :tuesday_opening_time %>
-  </div>
-
-  <div>
-    <%= form.label :wednesday_opening_time, style: "display: block" %>
-    <%= form.time_field :wednesday_opening_time %>
-  </div>
-
-  <div>
-    <%= form.label :thursday_opening_time, style: "display: block" %>
-    <%= form.time_field :thursday_opening_time %>
-  </div>
-
-  <div>
-    <%= form.label :friday_opening_time, style: "display: block" %>
-    <%= form.time_field :friday_opening_time %>
-  </div>
-
-  <div>
-    <%= form.label :saturday_opening_time, style: "display: block" %>
-    <%= form.time_field :saturday_opening_time %>
-  </div>
-
-  <div>
-    <%= form.label :sunday_closing_time, style: "display: block" %>
-    <%= form.time_field :sunday_closing_time %>
-  </div>
-
-  <div>
-    <%= form.label :monday_closing_time, style: "display: block" %>
-    <%= form.time_field :monday_closing_time %>
-  </div>
-
-  <div>
-    <%= form.label :tuesday_closing_time, style: "display: block" %>
-    <%= form.time_field :tuesday_closing_time %>
-  </div>
-
-  <div>
-    <%= form.label :wednesday_closing_time, style: "display: block" %>
-    <%= form.time_field :wednesday_closing_time %>
-  </div>
-
-  <div>
-    <%= form.label :thursday_closing_time, style: "display: block" %>
-    <%= form.time_field :thursday_closing_time %>
-  </div>
-
-  <div>
-    <%= form.label :friday_closing_time, style: "display: block" %>
-    <%= form.time_field :friday_closing_time %>
-  </div>
-
-  <div>
-    <%= form.label :saturday_closing_time, style: "display: block" %>
-    <%= form.time_field :saturday_closing_time %>
-  </div>
-
-  <div>
-    <%= form.label :sunday_closed, style: "display: block" %>
-    <%= form.checkbox :sunday_closed %>
-  </div>
-
-  <div>
-    <%= form.label :monday_closed, style: "display: block" %>
-    <%= form.checkbox :monday_closed %>
-  </div>
-
-  <div>
-    <%= form.label :tuesday_closed, style: "display: block" %>
-    <%= form.checkbox :tuesday_closed %>
-  </div>
-
-  <div>
-    <%= form.label :wednesday_closed, style: "display: block" %>
-    <%= form.checkbox :wednesday_closed %>
-  </div>
-
-  <div>
-    <%= form.label :thursday_closed, style: "display: block" %>
-    <%= form.checkbox :thursday_closed %>
-  </div>
-
-  <div>
-    <%= form.label :friday_closed, style: "display: block" %>
-    <%= form.checkbox :friday_closed %>
-  </div>
-
-  <div>
-    <%= form.label :saturday_closed, style: "display: block" %>
-    <%= form.checkbox :saturday_closed %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="mt-4">
+    <%= form.submit "Save", class: "btn btn-primary" %>
   </div>
 <% end %>

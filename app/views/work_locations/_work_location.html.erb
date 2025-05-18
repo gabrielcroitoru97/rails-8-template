@@ -1,202 +1,99 @@
-<div id="<%= dom_id work_location %>">
-  <p>
-    <strong>Location type:</strong>
-    <%= work_location.location_type_id %>
-  </p>
+<div id="<%= dom_id work_location %>" class="container mt-4">
+  <h4 class="mb-4 text-center">Work Location Details</h4>
 
-  <p>
-    <strong>Wifi speed average:</strong>
-    <%= work_location.wifi_speed_average %>
-  </p>
+  <table class="table table-bordered w-50 mx-auto">
+    <tbody>
+      <tr>
+        <th>Name</th>
+        <td><%= work_location.name %></td>
+      </tr>
+      <tr>
+        <th>Location Type</th>
+        <td><%= LocationType.find(work_location.location_type_id).descriptor rescue "N/A" %></td>
+      </tr>
+      <tr>
+        <th>Description</th>
+        <td><%= work_location.description %></td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td><%= work_location.address %></td>
+      </tr>
+      <tr>
+        <th>City / State / Zip</th>
+        <td><%= [work_location.city, work_location.state, work_location.zip_code].compact.join(", ") %></td>
+      </tr>
+      <tr>
+        <th>Phone</th>
+        <td><%= work_location.phone_number %></td>
+      </tr>
+      <tr>
+        <th>Website</th>
+        <td><%= work_location.website %></td>
+      </tr>
+      <tr>
+        <th>Latitude / Longitude</th>
+        <td><%= "#{work_location.latitude}, #{work_location.longitude}" %></td>
+      </tr>
+      <tr>
+        <th>Requires Purchase</th>
+        <td><%= work_location.requires_purchase ? "Yes" : "No" %></td>
+      </tr>
+      <tr>
+        <th>Membership</th>
+        <td><%= work_location.membership ? "Yes" : "No" %></td>
+      </tr>
+      <tr>
+        <th>Owner ID</th>
+        <td><%= work_location.owner_id %></td>
+      </tr>
+      <tr>
+        <th>Average Rating</th>
+        <td><%= work_location.average_rating %></td>
+      </tr>
+      <tr>
+        <th>Wifi Speed (Mbps)</th>
+        <td><%= work_location.wifi_speed_average %></td>
+      </tr>
+      <tr>
+        <th>Outlet Availability</th>
+        <td><%= work_location.outlet_availability_average %></td>
+      </tr>
+      <tr>
+        <th>Crowding</th>
+        <td><%= work_location.crowding_average %></td>
+      </tr>
+      <tr>
+        <th>Noise</th>
+        <td><%= work_location.noise_average %></td>
+      </tr>
 
-  <p>
-    <strong>Address:</strong>
-    <%= work_location.address %>
-  </p>
+      <tr class="table-primary text-center">
+        <th colspan="2">Hours</th>
+      </tr>
 
-  <p>
-    <strong>Phone number:</strong>
-    <%= work_location.phone_number %>
-  </p>
+      <% [
+        ["Sunday", :sunday_opening_time, :sunday_closing_time, :sunday_closed],
+        ["Monday", :monday_opening_time, :monday_closing_time, :monday_closed],
+        ["Tuesday", :tuesday_opening_time, :tuesday_closing_time, :tuesday_closed],
+        ["Wednesday", :wednesday_opening_time, :wednesday_closing_time, :wednesday_closed],
+        ["Thursday", :thursday_opening_time, :thursday_closing_time, :thursday_closed],
+        ["Friday", :friday_opening_time, :friday_closing_time, :friday_closed],
+        ["Saturday", :saturday_opening_time, :saturday_closing_time, :saturday_closed]
+      ].each do |day, open_sym, close_sym, closed_sym| %>
+        <tr>
+          <th><%= day %></th>
+          <td>
+            <% if work_location.send(closed_sym) %>
+              Closed
+            <% else %>
+              <%= work_location.send(open_sym)&.strftime("%-I:%M %p") %> to 
+              <%= work_location.send(close_sym)&.strftime("%-I:%M %p") %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
 
-  <p>
-    <strong>Website:</strong>
-    <%= work_location.website %>
-  </p>
-
-  <p>
-    <strong>City:</strong>
-    <%= work_location.city %>
-  </p>
-
-  <p>
-    <strong>State:</strong>
-    <%= work_location.state %>
-  </p>
-
-  <p>
-    <strong>Zip code:</strong>
-    <%= work_location.zip_code %>
-  </p>
-
-  <p>
-    <strong>Longitude:</strong>
-    <%= work_location.longitude %>
-  </p>
-
-  <p>
-    <strong>Latitude:</strong>
-    <%= work_location.latitude %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= work_location.description %>
-  </p>
-
-  <p>
-    <strong>Name:</strong>
-    <%= work_location.name %>
-  </p>
-
-  <p>
-    <strong>Average rating:</strong>
-    <%= work_location.average_rating %>
-  </p>
-
-  <p>
-    <strong>Owner:</strong>
-    <%= work_location.owner_id %>
-  </p>
-
-  <p>
-    <strong>Crowding average:</strong>
-    <%= work_location.crowding_average %>
-  </p>
-
-  <p>
-    <strong>Noise average:</strong>
-    <%= work_location.noise_average %>
-  </p>
-
-  <p>
-    <strong>Requires purchase:</strong>
-    <%= work_location.requires_purchase %>
-  </p>
-
-  <p>
-    <strong>Membership:</strong>
-    <%= work_location.membership %>
-  </p>
-
-  <p>
-    <strong>Sunday opening time:</strong>
-    <%= work_location.sunday_opening_time %>
-  </p>
-
-  <p>
-    <strong>Monday opening time:</strong>
-    <%= work_location.monday_opening_time %>
-  </p>
-
-  <p>
-    <strong>Tuesday opening time:</strong>
-    <%= work_location.tuesday_opening_time %>
-  </p>
-
-  <p>
-    <strong>Wednesday opening time:</strong>
-    <%= work_location.wednesday_opening_time %>
-  </p>
-
-  <p>
-    <strong>Thursday opening time:</strong>
-    <%= work_location.thursday_opening_time %>
-  </p>
-
-  <p>
-    <strong>Friday opening time:</strong>
-    <%= work_location.friday_opening_time %>
-  </p>
-
-  <p>
-    <strong>Saturday opening time:</strong>
-    <%= work_location.saturday_opening_time %>
-  </p>
-
-  <p>
-    <strong>Sunday closing time:</strong>
-    <%= work_location.sunday_closing_time %>
-  </p>
-
-  <p>
-    <strong>Monday closing time:</strong>
-    <%= work_location.monday_closing_time %>
-  </p>
-
-  <p>
-    <strong>Tuesday closing time:</strong>
-    <%= work_location.tuesday_closing_time %>
-  </p>
-
-  <p>
-    <strong>Wednesday closing time:</strong>
-    <%= work_location.wednesday_closing_time %>
-  </p>
-
-  <p>
-    <strong>Thursday closing time:</strong>
-    <%= work_location.thursday_closing_time %>
-  </p>
-
-  <p>
-    <strong>Friday closing time:</strong>
-    <%= work_location.friday_closing_time %>
-  </p>
-
-  <p>
-    <strong>Saturday closing time:</strong>
-    <%= work_location.saturday_closing_time %>
-  </p>
-
-  <p>
-    <strong>Sunday closed:</strong>
-    <%= work_location.sunday_closed %>
-  </p>
-
-  <p>
-    <strong>Monday closed:</strong>
-    <%= work_location.monday_closed %>
-  </p>
-
-  <p>
-    <strong>Tuesday closed:</strong>
-    <%= work_location.tuesday_closed %>
-  </p>
-
-  <p>
-    <strong>Wednesday closed:</strong>
-    <%= work_location.wednesday_closed %>
-  </p>
-
-  <p>
-    <strong>Thursday closed:</strong>
-    <%= work_location.thursday_closed %>
-  </p>
-
-  <p>
-    <strong>Friday closed:</strong>
-    <%= work_location.friday_closed %>
-  </p>
-
-  <p>
-    <strong>Saturday closed:</strong>
-    <%= work_location.saturday_closed %>
-  </p>
-
-  <p>
-    <strong>Outlet availability average:</strong>
-    <%= work_location.outlet_availability_average %>
-  </p>
-
+    </tbody>
+  </table>
 </div>

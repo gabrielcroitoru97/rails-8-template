@@ -24,14 +24,14 @@ class RatingsController < ApplicationController
     @rating = Rating.new(rating_params)
 
     the_work_location= WorkLocation.find(rating_params[:location_id])
-    @rating.user_id = current_user.id
+    @rating.user = current_user
 
     the_work_location.average_rating = the_work_location.ratings.average(:overall_rating)
-    the_work_location.wifi_rating = the_work_location.ratings.average(:wifi_rating)
-    the_work_location.crowding_rating = the_work_location.ratings.average(:crowding_rating)
-    the_work_location.noise_rating = the_work_location.ratings.average(:noise_rating)
-    the_work_location.outlet_rating = the_work_location.ratings.average(:outlet_rating)
-    the_work_location.comfort_and_workspace_rating = the_work_location.ratings.average(:comfort_and_workspace_rating)
+    the_work_location.wifi_speed_average = the_work_location.ratings.average(:wifi_rating)
+    the_work_location.crowding_average = the_work_location.ratings.average(:crowding_rating)
+    the_work_location.noise_average = the_work_location.ratings.average(:noise_rating)
+    the_work_location.outlet_availability_average = the_work_location.ratings.average(:outlet_rating)
+    #the_work_location.comfort_and_workspace_rating = the_work_location.ratings.average(:comfort_and_workspace_rating)
     the_work_location.save!
 
     respond_to do |format|

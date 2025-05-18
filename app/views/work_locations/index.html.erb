@@ -25,13 +25,6 @@
   
   
   
-  
-  <% @work_locations.each do |work_location| %>
-    <%= render work_location %>
-    <p>
-      <%= link_to "Show this work location", work_location %>
-    </p>
-  <% end %>
 </div>
 
 <%= link_to "New work location", new_work_location_path %>
