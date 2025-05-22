@@ -1,11 +1,9 @@
-Implement bootstrap to make things looks better
 Make named routes and links
-Fix forms with new syntax
-make work locations table look ok
-make work location details page look ok
-add links for adding favorite and adding photos
-get sample data in
-set up ratings with overall averages
-
-start javascript re-writes
+Add photos album to top
+start javascript re-writes (favorite places, add ratings)
+Figure out profile page error
+Add favoirte palces to profile page with option to edit and delete
+Look at security settings (what can you do while logged in, who gets to edit the page)
+Maybe add google maps API
+Make eidt profile page and create profile page nicer
 

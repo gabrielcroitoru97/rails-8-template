@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_08_012217) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_22_004742) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -31,11 +31,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_08_012217) do
   end
 
   create_table "images", force: :cascade do |t|
-    t.integer "location_id"
     t.integer "poster_id"
     t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "comment_id"
+    t.index ["comment_id"], name: "index_images_on_comment_id"
   end
 
   create_table "location_types", force: :cascade do |t|
@@ -215,7 +216,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_08_012217) do
 
   create_table "work_locations", force: :cascade do |t|
     t.integer "location_type_id"
-    t.integer "wifi_speed_average"
+    t.float "wifi_speed_average"
     t.string "address"
     t.string "phone_number"
     t.string "website"
@@ -228,8 +229,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_08_012217) do
     t.string "name"
     t.float "average_rating"
     t.integer "owner_id"
-    t.integer "crowding_average"
-    t.integer "noise_average"
+    t.float "crowding_average"
+    t.float "noise_average"
     t.boolean "requires_purchase"
     t.boolean "membership"
     t.time "sunday_opening_time"
@@ -253,11 +254,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_08_012217) do
     t.boolean "thursday_closed"
     t.boolean "friday_closed"
     t.boolean "saturday_closed"
-    t.integer "outlet_availability_average"
+    t.float "outlet_availability_average"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "comfort_and_workspace_rating"
   end
 
+  add_foreign_key "images", "comments"
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_claimed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_failed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade

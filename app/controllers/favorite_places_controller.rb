@@ -22,10 +22,12 @@ class FavoritePlacesController < ApplicationController
   # POST /favorite_places or /favorite_places.json
   def create
     @favorite_place = FavoritePlace.new(favorite_place_params)
+    @favorite_place.user = current_user
+    @the_work_location= WorkLocation.find(favorite_place_params[:place_id])
 
     respond_to do |format|
       if @favorite_place.save
-        format.html { redirect_to @favorite_place, notice: "Favorite place was successfully created." }
+        format.html { redirect_to @the_work_location, notice: "Favorite place was successfully created." }
         format.json { render :show, status: :created, location: @favorite_place }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -49,10 +51,11 @@ class FavoritePlacesController < ApplicationController
 
   # DELETE /favorite_places/1 or /favorite_places/1.json
   def destroy
+    work_location_id= @favorite_place.place_id
     @favorite_place.destroy!
 
     respond_to do |format|
-      format.html { redirect_to favorite_places_path, status: :see_other, notice: "Favorite place was successfully destroyed." }
+      format.html { redirect_to WorkLocation.find(work_location_id), status: :see_other, notice: "Favorite place was successfully destroyed." }
       format.json { head :no_content }
     end
   end

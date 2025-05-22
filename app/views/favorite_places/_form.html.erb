@@ -11,22 +11,13 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.number_field :user_id %>
-  </div>
 
-  <div>
-    <%= form.label :place_id, style: "display: block" %>
-    <%= form.number_field :place_id %>
-  </div>
 
-  <div>
-    <%= form.label :note, style: "display: block" %>
+  <%= form.hidden_field :place_id %>
+
+  <div class="text-center">
+    <%= form.label :note%>
     <%= form.text_field :note %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit "Save to Favorites"%>
   </div>
 <% end %>

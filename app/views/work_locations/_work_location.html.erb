@@ -32,10 +32,6 @@
         <td><%= work_location.website %></td>
       </tr>
       <tr>
-        <th>Latitude / Longitude</th>
-        <td><%= "#{work_location.latitude}, #{work_location.longitude}" %></td>
-      </tr>
-      <tr>
         <th>Requires Purchase</th>
         <td><%= work_location.requires_purchase ? "Yes" : "No" %></td>
       </tr>
@@ -47,26 +43,7 @@
         <th>Owner ID</th>
         <td><%= work_location.owner_id %></td>
       </tr>
-      <tr>
-        <th>Average Rating</th>
-        <td><%= work_location.average_rating %></td>
-      </tr>
-      <tr>
-        <th>Wifi Speed (Mbps)</th>
-        <td><%= work_location.wifi_speed_average %></td>
-      </tr>
-      <tr>
-        <th>Outlet Availability</th>
-        <td><%= work_location.outlet_availability_average %></td>
-      </tr>
-      <tr>
-        <th>Crowding</th>
-        <td><%= work_location.crowding_average %></td>
-      </tr>
-      <tr>
-        <th>Noise</th>
-        <td><%= work_location.noise_average %></td>
-      </tr>
+     
 
       <tr class="table-primary text-center">
         <th colspan="2">Hours</th>

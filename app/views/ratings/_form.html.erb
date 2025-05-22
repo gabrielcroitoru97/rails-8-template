@@ -1,66 +1,63 @@
-<%= form_with(model: rating) do |form| %>
-  <% if rating.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
+<div class="container w-50 mx-auto mt-5">
+  <div class="card bg-light p-4">
+    <h4 class="mb-4 text-center">Add Your Review</h4>
 
-      <ul>
-        <% rating.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <%= form_with(model: rating, html: { class: "mb-4" }) do |form| %>
+      <% if rating.errors.any? %>
+        <div class="alert alert-danger">
+          <h5><%= pluralize(rating.errors.count, "error") %> prohibited this review from being saved:</h5>
+          <ul>
+            <% rating.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-<!--  <div>-->
-    <%#= form.label :user_id, style: "display: block" %>
-    <%#= form.number_field :user_id %>
-<!--  </div>-->
+      <%= form.hidden_field :location_id %>
 
-<!--  <div>-->
-    <%#= form.label :location_id, style: "display: block" %>
-    <%#= form.number_field :location_id %>
-<!--  </div>-->
+      <div class="mb-4">
+        <div class="row text-center">
+          <div class="col">
+            <strong>Overall</strong><br>
+            <%= form.select :overall_rating, options_for_select(1..5), {}, class: "form-select mt-1" %>
+          </div>
+          <div class="col">
+            <strong>WiFi</strong><br>
+            <%= form.select :wifi_rating, options_for_select(1..5), {}, class: "form-select mt-1" %>
+          </div>
+          <div class="col">
+            <strong>Crowding</strong><br>
+            <%= form.select :crowding_rating, options_for_select(1..5), {}, class: "form-select mt-1" %>
+          </div>
+          <div class="col">
+            <strong>Noise</strong><br>
+            <%= form.select :noise_rating, options_for_select(1..5), {}, class: "form-select mt-1" %>
+          </div>
+          <div class="col">
+            <strong>Outlets</strong><br>
+            <%= form.select :outlet_rating, options_for_select(1..5), {}, class: "form-select mt-1" %>
+          </div>
+          <div class="col">
+            <strong>Workspace</strong><br>
+            <%= form.select :comfort_and_workspace_rating, options_for_select(1..5), {}, class: "form-select mt-1" %>
+          </div>
+        </div>
+      </div>
 
+      <div class="mb-3">
+        <label class="form-label"><strong>Comments</strong></label>
+        <%= form.text_area :content, class: "form-control", rows: 4 %>
+      </div>
 
-  <%= form.hidden_field :location_id %>
+      <div class="mb-3">
+        <label class="form-label"><strong>Upload Image (optional)</strong></label>
+        <%= form.file_field :picture, class: "form-control" %>
+      </div>
 
-    <div>
-    <%= form.label :overall_rating, style: "display: block" %>
-    <%= form.select :overall_rating, options_for_select(1..5), {} %>
+      <div class="text-center">
+        <%= form.submit "Submit Review", class: "btn btn-primary" %>
+      </div>
+    <% end %>
   </div>
-  
-  <div>
-    <%= form.label :wifi_rating, style: "display: block" %>
-    <%= form.select :wifi_rating, options_for_select(1..5), {} %>
-  </div>
-  
-  <div>
-    <%= form.label :crowding_rating, style: "display: block" %>
-    <%= form.select :crowding_rating, options_for_select(1..5), {} %>
-  </div>
-  
-  <div>
-    <%= form.label :noise_rating, style: "display: block" %>
-    <%= form.select :noise_rating, options_for_select(1..5), {} %>
-  </div>
-  
-  <div>
-    <%= form.label :outlet_rating, style: "display: block" %>
-    <%= form.select :outlet_rating, options_for_select(1..5), {} %>
-  </div>
-  
-  <div>
-    <%= form.label :comfort_and_workspace_rating, style: "display: block" %>
-    <%= form.select :comfort_and_workspace_rating, options_for_select(1..5), {} %>
-  </div>
-  
-
-  <div>
-    <%= form.label :content, style: "display: block" %>
-    <%= form.textarea :content %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

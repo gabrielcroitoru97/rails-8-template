@@ -1,30 +1,36 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title, "Work Locations" %>
 
-<% content_for :title, "Work locations" %>
+<div class="container mt-4">
+  <% if notice %>
+    <div class="alert alert-success text-center">
+      <%= notice %>
+    </div>
+  <% end %>
 
-<h1>Work locations</h1>
+  <h1 class="mb-4 text-center">Work Locations</h1>
 
-<div id="work_locations">
-  <table id= work_locations_table>
-    <tr>
-      <th>Location Type</th>
-      <th>Name</th>
-      <th>Average Rating</th>
-      <th>Details</th>
-    </tr>
-
-    <% @work_locations.each do |work_location| %>
+  <table class="table table-bordered table-hover text-center" id="work_locations_table">
+    <thead class="table-light">
       <tr>
-        <td><%= work_location.location_type.descriptor %></td>
-        <td><%= work_location.name %></td>
-        <td><%= work_location.average_rating %></td>
-        <td><%= link_to "Show", work_location %></td>
+        <th>Location Type</th>
+        <th>Name</th>
+        <th>Average Rating</th>
+        <th>Details</th>
       </tr>
-    <% end %>
-  
-  
-  
-  
-</div>
+    </thead>
+    <tbody>
+      <% @work_locations.each do |work_location| %>
+        <tr>
+          <td><%= work_location.location_type.descriptor %></td>
+          <td><%= work_location.name %></td>
+          <td><%= work_location.average_rating %></td>
+          <td><%= link_to "Show", work_location, class: "btn btn-sm btn-outline-primary" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to "New work location", new_work_location_path %>
+  <div class="text-center mt-3">
+    <%= link_to "New Work Location", new_work_location_path, class: "btn btn-primary" %>
+  </div>
+</div>

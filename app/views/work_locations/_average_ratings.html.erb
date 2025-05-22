@@ -1,0 +1,28 @@
+<div class="container w-50 mx-auto text-center mt-4">
+  <div class="row mb-3">
+    <div class="col">
+      <div><strong>Overall</strong></div>
+      <div class="text-primary fs-3"><%= work_location.average_rating %></div>
+    </div>
+    <div class="col">
+      <div><strong>WiFi</strong></div>
+      <div class="text-primary fs-3"><%= work_location.wifi_speed_average %></div>
+    </div>
+    <div class="col">
+      <div><strong>Outlets</strong></div>
+      <div class="text-primary fs-3"><%= work_location.outlet_availability_average %></div>
+    </div>
+    <div class="col">
+      <div><strong>Crowding</strong></div>
+      <div class="text-primary fs-3"><%= work_location.crowding_average %></div>
+    </div>
+    <div class="col">
+      <div><strong>Noise</strong></div>
+      <div class="text-primary fs-3"><%= work_location.noise_average %></div>
+    </div>
+    <!--<div class="col">
+      <div><strong>Workspace</strong></div>
+      <div class="text-primary fs-3"><%#= work_location.comfort_and_workspace_average %></div>
+    </div>-->
+  </div>
+</div>
