@@ -1,0 +1,32 @@
+
+
+  <h2 class="mt-4 text-center">Your Favorites</h2>
+
+<% if @user.favorite_places.any? %>
+  <div class="list-group">
+    <% @user.favorite_places.each do |favorite_place| %>
+      <% work_location = WorkLocation.find_by(id: favorite_place.place_id) %>
+      <% next unless work_location %>
+
+      <div class="list-group-item d-flex justify-content-between align-items-start">
+        <div>
+          <h5 class="mb-1">
+            <%= link_to work_location.name, work_location_path(work_location), class: "text-decoration-none" %>
+          </h5>
+          <% if favorite_place.note.present? %>
+            <p class="mb-1"><%= favorite_place.note %></p>
+          <% end %>
+          <small class="text-muted">Favorited on <%= favorite_place.created_at.strftime("%B %d, %Y") %></small>
+        </div>
+        
+        <div class="ms-3">
+          <%= button_to "Remove Favorite", favorite_place_path(favorite_place), method: :delete,
+              class: "btn btn-sm btn-outline-danger",
+              data: { turbo_confirm: "Are you sure you want to remove this favorite?" } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p class="text-center mt-3">No favorites yet.</p>
+<% end %>

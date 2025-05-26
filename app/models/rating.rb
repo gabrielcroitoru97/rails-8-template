@@ -24,4 +24,6 @@ class Rating < ApplicationRecord
   validates :overall_rating, presence: true
   validates :location_id, presence: true
 
+  has_many :images
+
 end

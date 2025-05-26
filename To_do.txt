@@ -1,9 +1,5 @@
 Make named routes and links
 Add photos album to top
 start javascript re-writes (favorite places, add ratings)
-Figure out profile page error
-Add favoirte palces to profile page with option to edit and delete
 Look at security settings (what can you do while logged in, who gets to edit the page)
 Maybe add google maps API
-Make eidt profile page and create profile page nicer
-

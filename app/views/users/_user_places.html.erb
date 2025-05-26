@@ -1,0 +1,14 @@
+  <h2 class="mt-4">Your Work Locations</h2>
+  <% if @user.work_locations.any? %>
+    <div class="list-group">
+      <% @user.work_locations.each do |work_location| %>
+        <div class="list-group-item">
+          <h5 class="mb-1"><%= link_to work_location.name, work_location_path(work_location), class: "text-decoration-none" %></h5>
+          <p class="mb-1"><%= work_location.description %></p>
+          <small>Created at: <%= work_location.created_at.strftime("%B %d, %Y") %></small>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>No work locations yet.</p>
+  <% end %>

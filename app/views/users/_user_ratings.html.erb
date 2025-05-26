@@ -1,0 +1,10 @@
+  <h2> Your Ratings</h2>
+  <% if @user.ratings.any? %>
+    <div class="list-group">
+      <% @user.ratings.each do |rating| %>
+        <%= render partial: "ratings/rating", locals: { rating: rating } %>
+      <% end %>
+    </div>
+  <% else %>
+    <p>No ratings yet.</p>
+  <% end %>

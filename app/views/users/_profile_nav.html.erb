@@ -1,0 +1,29 @@
+<%#= render "users/user_favorites" %>
+<%#= render "users/user_places" %>
+<%#= render "users/user_ratings" %>
+<!--
+-->
+
+<ul class="nav nav-tabs mb-3" id="profileTabs" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="favorites-tab" data-bs-toggle="tab" data-bs-target="#favorites" type="button" role="tab">Favorites</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="places-tab" data-bs-toggle="tab" data-bs-target="#places" type="button" role="tab">Places</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="ratings-tab" data-bs-toggle="tab" data-bs-target="#ratings" type="button" role="tab">Ratings</button>
+  </li>
+</ul>
+
+<div class="tab-content" id="profileTabsContent">
+  <div class="tab-pane fade show active" id="favorites" role="tabpanel" aria-labelledby="favorites-tab">
+    <%= render "users/user_favorites" %>
+  </div>
+  <div class="tab-pane fade" id="places" role="tabpanel" aria-labelledby="places-tab">
+    <%= render "users/user_places" %>
+  </div>
+  <div class="tab-pane fade" id="ratings" role="tabpanel" aria-labelledby="ratings-tab">
+    <%= render "users/user_ratings" %>
+  </div>
+</div>

@@ -6,11 +6,13 @@
         <p class="mb-2 text-muted">Overall Rating: <%= rating.overall_rating %></p>
         <p><%= rating.content %></p>
 
-        <%# if rating.image.attached? %>
-<!--          <div class="mt-3">-->
-            <%#= image_tag rating.image_url, class: "img-fluid rounded" %>
-<!--          </div>-->
-        <%# end %>
+        <% if rating.images.any? %>
+          <div class="mt-3">
+            <% rating.images.each do |image|%>
+              <%= image_tag image.picture.url, class: "img-fluid rounded", width: 300 %>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
   
