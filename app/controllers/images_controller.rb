@@ -1,9 +1,5 @@
 class ImagesController < ApplicationController
-  before_action :set_image, only: %i[ show edit update destroy ]
-
-
-
-
+  before_action :set_image, only: %i[destroy ]
 
   # GET /images/new
   def new

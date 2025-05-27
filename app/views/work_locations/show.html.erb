@@ -2,6 +2,10 @@
 
 <%= render @work_location %>
 
+<div class="mb-4 text-center">
+  <%= link_to "Edit this work location", edit_work_location_path(@work_location) %>
+</div>
+
 <div>
 
   <%= render "work_locations/favorites", work_location: @work_location%>
@@ -17,11 +21,4 @@
   <div id="<%=dom_id(@work_location) %>_ratings-list">>
     <%= render @work_location.ratings %>
   </div>
-</div>
-
-<div>
-  <%= link_to "Edit this work location", edit_work_location_path(@work_location) %> |
-  <%= link_to "Back to work locations", work_locations_path %>
-
-  <%= button_to "Destroy this work location", @work_location, method: :delete %>
 </div>

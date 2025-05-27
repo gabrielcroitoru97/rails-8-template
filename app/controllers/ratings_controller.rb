@@ -1,5 +1,6 @@
 class RatingsController < ApplicationController
   before_action :set_rating, only: %i[edit update destroy ]
+  before_action :ensure_current_user_is_owner, only: %i[edit update destroy]
 
 
   # GET /ratings/new
@@ -88,5 +89,11 @@ end
     # Only allow a list of trusted parameters through.
     def rating_params
       params.expect(rating: [ :user_id, :location_id, :overall_rating, :content, :wifi_rating, :crowding_rating, :noise_rating, :outlet_rating, :comfort_and_workspace_rating, :picture ])
+    end
+
+    def ensure_current_user_is_owner
+      if current_user != @rating.user
+        redirect_back fallback_location: root_url, alert: "You're not authorized for that."
+      end
     end
 end

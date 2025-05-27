@@ -1,12 +1,9 @@
 <div id="<%= dom_id work_location %>" class="container mt-4">
-  <h4 class="mb-4 text-center">Work Location Details</h4>
+  <h4 class="mb-4 text-center"><%= work_location.name %></h4>
 
   <table class="table table-bordered w-50 mx-auto">
     <tbody>
-      <tr>
-        <th>Name</th>
-        <td><%= work_location.name %></td>
-      </tr>
+
       <tr>
         <th>Location Type</th>
         <td><%= LocationType.find(work_location.location_type_id).descriptor rescue "N/A" %></td>
@@ -38,10 +35,6 @@
       <tr>
         <th>Membership</th>
         <td><%= work_location.membership ? "Yes" : "No" %></td>
-      </tr>
-      <tr>
-        <th>Owner ID</th>
-        <td><%= work_location.owner_id %></td>
       </tr>
      
 

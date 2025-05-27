@@ -1,5 +1,5 @@
 class LocationTypesController < ApplicationController
-  before_action :set_location_type, only: %i[ show edit update destroy ]
+  before_action :set_location_type, only: %i[ destroy ]
 
 
   # GET /location_types/new

@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
 
   root "work_locations#index"
-  resources :location_types
-  resources :favorite_places
-  resources :images
-  resources :comments
-  resources :ratings
+  resources :location_types, only: [:new, :create, :destroy, :edit]
+  resources :favorite_places, except: [:index, :show]
+  resources :images, only: [:create, :destroy]
+  resources :comments, except: [:index, :show]
+  resources :ratings, except: [:index, :show]
   devise_for :users
   resources :work_locations
   
