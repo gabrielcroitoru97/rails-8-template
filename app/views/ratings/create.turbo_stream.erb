@@ -1,0 +1,7 @@
+<%= turbo_stream.append "#{dom_id(@rating.location)}_ratings-list" do %>
+  <%= render @rating %>
+<% end %>
+
+<%= turbo_stream.replace "#{dom_id(@rating.location)}_new_rating_form" do %>
+  <%= render "form", rating: @rating.location.ratings.build %>
+<% end %>

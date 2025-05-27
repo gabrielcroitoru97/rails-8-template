@@ -1,0 +1,11 @@
+<div id="<%= dom_id(work_location) %>_favorite">
+  <% if user_signed_in? %>
+    <% favorite_place = FavoritePlace.find_by(place_id: work_location.id, user_id: current_user.id) %>
+
+      <% if favorite_place.present? %>
+        <%= render "favorite_places/destroy", favorite_place: favorite_place %>
+      <% else %>
+        <%= render "favorite_places/form", favorite_place: FavoritePlace.new(place_id: work_location.id) %>
+      <% end %>
+  <% end %>
+</div>

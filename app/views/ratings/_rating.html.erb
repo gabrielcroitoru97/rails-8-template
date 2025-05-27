@@ -1,19 +1,36 @@
-<div class="container w-50 mx-auto mt-4">
-  
-    <div class="card mb-4">
-      <div class="card-body">
-        <p class="mb-1"><strong><%= rating.user.username %></strong></p>
-        <p class="mb-2 text-muted">Overall Rating: <%= rating.overall_rating %></p>
-        <p><%= rating.content %></p>
-
-        <% if rating.images.any? %>
-          <div class="mt-3">
-            <% rating.images.each do |image|%>
-              <%= image_tag image.picture.url, class: "img-fluid rounded", width: 300 %>
-            <% end %>
-          </div>
-        <% end %>
+<div class="container w-50 mx-auto mt-4", id="<%= dom_id(rating) %>">
+  <div class="card shadow-sm border-0 mb-4">
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="mb-0"><strong><%= rating.user.username %></strong></h5>
+        <div class="btn-group">
+          <% if rating.user = current_user%>
+            <%= link_to "Edit", edit_rating_path(rating), class: "btn btn-sm btn-outline-secondary", data: { turbo_stream: true } %>
+            <%= button_to "Delete", rating_path(rating), method: :delete,
+                  data: { turbo_confirm: "Are you sure?" },
+                  class: "btn btn-sm btn-outline-danger" %>
+          <%end%>
+        </div>
       </div>
+
+      <div class="row text-center text-muted mb-3">
+        <div class="col"><small>Overall</small><div class="fw-bold text-dark fs-5"><%= rating.overall_rating %></div></div>
+        <div class="col"><small>WiFi</small><div class="fw-bold text-dark fs-5"><%= rating.wifi_rating %></div></div>
+        <div class="col"><small>Crowding</small><div class="fw-bold text-dark fs-5"><%= rating.crowding_rating %></div></div>
+        <div class="col"><small>Noise</small><div class="fw-bold text-dark fs-5"><%= rating.noise_rating %></div></div>
+        <div class="col"><small>Outlets</small><div class="fw-bold text-dark fs-5"><%= rating.outlet_rating %></div></div>
+        <div class="col"><small>Workspace</small><div class="fw-bold text-dark fs-5"><%= rating.comfort_and_workspace_rating %></div></div>
+      </div>
+
+      <p class="fst-italic"><%= rating.content %></p>
+
+      <% if rating.images.any? %>
+        <div class="mt-3 d-flex flex-wrap gap-3">
+          <% rating.images.each do |image| %>
+            <%= image_tag image.picture.url, class: "img-thumbnail", width: 200 %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
-  
+  </div>
 </div>

@@ -23,7 +23,7 @@
         <tr>
           <td><%= work_location.location_type.descriptor %></td>
           <td><%= work_location.name %></td>
-          <td><%= work_location.average_rating %></td>
+          <td><%= work_location.average_rating.to_f.round(1) %></td>
           <td><%= link_to "Show", work_location, class: "btn btn-sm btn-outline-primary" %></td>
         </tr>
       <% end %>

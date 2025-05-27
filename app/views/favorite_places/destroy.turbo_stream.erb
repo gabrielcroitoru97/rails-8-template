@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "#{dom_id(@favorite_place.place)}_favorite" do %>
+  <%= render "work_locations/favorites", work_location: @favorite_place.place %>
+<% end %>

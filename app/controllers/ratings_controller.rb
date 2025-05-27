@@ -1,14 +1,6 @@
 class RatingsController < ApplicationController
-  before_action :set_rating, only: %i[ show edit update destroy ]
+  before_action :set_rating, only: %i[edit update destroy ]
 
-  # GET /ratings or /ratings.json
-  def index
-    @ratings = Rating.all
-  end
-
-  # GET /ratings/1 or /ratings/1.json
-  def show
-  end
 
   # GET /ratings/new
   def new
@@ -17,6 +9,10 @@ class RatingsController < ApplicationController
 
   # GET /ratings/1/edit
   def edit
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   # POST /ratings or /ratings.json
@@ -28,12 +24,11 @@ class RatingsController < ApplicationController
     
     respond_to do |format|
       if @rating.save
-        # ✅ Attach image if it was uploaded
-          if params[:rating][:picture].present?
+          if params[:image_file].present?
             @rating.images.create!(
-            picture: params[:rating][:picture],
-            poster_id: current_user.id
-          )
+              picture: params[:image_file],
+              poster_id: current_user.id
+            )
           end
 
        
@@ -48,6 +43,7 @@ class RatingsController < ApplicationController
 
         format.html { redirect_to @the_work_location, notice: "Rating was successfully created." }
         format.json { render :show, status: :created, location: @rating }
+        format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @rating.errors, status: :unprocessable_entity }
@@ -62,20 +58,24 @@ end
       if @rating.update(rating_params)
         format.html { redirect_to @rating, notice: "Rating was successfully updated." }
         format.json { render :show, status: :ok, location: @rating }
+        format.turbo_stream
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @rating.errors, status: :unprocessable_entity }
+        format.turbo_stream
       end
     end
   end
 
   # DELETE /ratings/1 or /ratings/1.json
   def destroy
+    @the_work_location = @rating.location
     @rating.destroy!
 
     respond_to do |format|
-      format.html { redirect_to ratings_path, status: :see_other, notice: "Rating was successfully destroyed." }
+      format.html { redirect_to @the_work_location, status: :see_other, notice: "Rating was successfully destroyed." }
       format.json { head :no_content }
+      format.turbo_stream
     end
   end
 

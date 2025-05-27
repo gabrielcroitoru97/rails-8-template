@@ -4,15 +4,9 @@
 
 <div>
 
-  <% if user_signed_in? %>
-    <% favorite_place = FavoritePlace.find_by(place_id: @work_location.id, user_id: current_user.id) %>
+  <%= render "work_locations/favorites", work_location: @work_location%>
 
-      <% if favorite_place.present? %>
-        <%= render "favorite_places/destroy", favorite_place: favorite_place %>
-      <% else %>
-        <%= render "favorite_places/form", favorite_place: FavoritePlace.new(place_id: @work_location.id) %>
-      <% end %>
-  <% end %>
+
 
   <%= render "ratings/form", rating: Rating.new(location_id: @work_location.id)%>
   
@@ -20,7 +14,9 @@
     <h2>Ratings</h2>
   </div>
   <%= render "average_ratings", work_location:@work_location%>
-  <%= render @work_location.ratings %>
+  <div id="<%=dom_id(@work_location) %>_ratings-list">>
+    <%= render @work_location.ratings %>
+  </div>
 </div>
 
 <div>

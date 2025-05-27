@@ -1,63 +1,66 @@
-<div class="container w-50 mx-auto mt-5">
-  <div class="card bg-light p-4">
-    <h4 class="mb-4 text-center">Add Your Review</h4>
-
-    <%= form_with(model: rating, html: { class: "mb-4" }) do |form| %>
-      <% if rating.errors.any? %>
-        <div class="alert alert-danger">
-          <h5><%= pluralize(rating.errors.count, "error") %> prohibited this review from being saved:</h5>
-          <ul>
-            <% rating.errors.each do |error| %>
-              <li><%= error.full_message %></li>
+<div id="<%= dom_id(rating.location) %>_<%=dom_id(rating) %>_form" class="mb-4">
+  <div class="container w-50 mx-auto mt-5">
+    <div class="card bg-light p-4">
+      <h4 class="mb-4 text-center">Add Your Review</h4>
+        
+          <%= form_with(model: rating, html: { class: "mb-4", multipart: true}) do |form| %>
+            <% if rating.errors.any? %>
+              <div class="alert alert-danger">
+                <h5><%= pluralize(rating.errors.count, "error") %> prohibited this review from being saved:</h5>
+                <ul>
+                  <% rating.errors.each do |error| %>
+                    <li><%= error.full_message %></li>
+                  <% end %>
+                </ul>
+              </div>
             <% end %>
-          </ul>
-        </div>
-      <% end %>
 
-      <%= form.hidden_field :location_id %>
+            <%= form.hidden_field :location_id %>
 
-      <div class="mb-4">
-        <div class="row text-center">
-          <div class="col">
-            <strong>Overall</strong><br>
-            <%= form.select :overall_rating, options_for_select(1..5), {}, class: "form-select mt-1" %>
-          </div>
-          <div class="col">
-            <strong>WiFi</strong><br>
-            <%= form.select :wifi_rating, options_for_select(1..5), {}, class: "form-select mt-1" %>
-          </div>
-          <div class="col">
-            <strong>Crowding</strong><br>
-            <%= form.select :crowding_rating, options_for_select(1..5), {}, class: "form-select mt-1" %>
-          </div>
-          <div class="col">
-            <strong>Noise</strong><br>
-            <%= form.select :noise_rating, options_for_select(1..5), {}, class: "form-select mt-1" %>
-          </div>
-          <div class="col">
-            <strong>Outlets</strong><br>
-            <%= form.select :outlet_rating, options_for_select(1..5), {}, class: "form-select mt-1" %>
-          </div>
-          <div class="col">
-            <strong>Workspace</strong><br>
-            <%= form.select :comfort_and_workspace_rating, options_for_select(1..5), {}, class: "form-select mt-1" %>
-          </div>
-        </div>
-      </div>
+            <div class="mb-4">
+              <div class="row text-center">
+                <div class="col">
+                  <strong>Overall</strong><br>
+                  <%= form.select :overall_rating, options_for_select(1..5), {}, class: "form-select mt-1" %>
+                </div>
+                <div class="col">
+                  <strong>WiFi</strong><br>
+                  <%= form.select :wifi_rating, options_for_select(1..5), {}, class: "form-select mt-1" %>
+                </div>
+                <div class="col">
+                  <strong>Crowding</strong><br>
+                  <%= form.select :crowding_rating, options_for_select(1..5), {}, class: "form-select mt-1" %>
+                </div>
+                <div class="col">
+                  <strong>Noise</strong><br>
+                  <%= form.select :noise_rating, options_for_select(1..5), {}, class: "form-select mt-1" %>
+                </div>
+                <div class="col">
+                  <strong>Outlets</strong><br>
+                  <%= form.select :outlet_rating, options_for_select(1..5), {}, class: "form-select mt-1" %>
+                </div>
+                <div class="col">
+                  <strong>Workspace</strong><br>
+                  <%= form.select :comfort_and_workspace_rating, options_for_select(1..5), {}, class: "form-select mt-1" %>
+                </div>
+              </div>
+            </div>
 
-      <div class="mb-3">
-        <label class="form-label"><strong>Comments</strong></label>
-        <%= form.text_area :content, class: "form-control", rows: 4 %>
-      </div>
+            <div class="mb-3">
+              <label class="form-label"><strong>Comments</strong></label>
+              <%= form.text_area :content, class: "form-control", rows: 4 %>
+            </div>
 
-      <div class="mb-3">
-        <label class="form-label"><strong>Upload Image (optional)</strong></label>
-        <%= form.file_field :picture, class: "form-control" %>
-      </div>
+            <div class="mb-3">
+              <label class="form-label"><strong>Upload Image (optional)</strong></label>
+              <%= file_field_tag :image_file, class: "form-control" %>
+            </div>
 
-      <div class="text-center">
-        <%= form.submit "Submit Review", class: "btn btn-primary" %>
-      </div>
-    <% end %>
+            <div class="text-center">
+              <%= form.submit "Submit Review", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+      
+    </div>
   </div>
 </div>

@@ -1,15 +1,6 @@
 class FavoritePlacesController < ApplicationController
   before_action :set_favorite_place, only: %i[ show edit update destroy ]
 
-  # GET /favorite_places or /favorite_places.json
-  def index
-    @favorite_places = FavoritePlace.all
-  end
-
-  # GET /favorite_places/1 or /favorite_places/1.json
-  def show
-  end
-
   # GET /favorite_places/new
   def new
     @favorite_place = FavoritePlace.new
@@ -29,6 +20,7 @@ class FavoritePlacesController < ApplicationController
       if @favorite_place.save
         format.html { redirect_to @the_work_location, notice: "Favorite place was successfully created." }
         format.json { render :show, status: :created, location: @favorite_place }
+        format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @favorite_place.errors, status: :unprocessable_entity }
@@ -57,6 +49,7 @@ class FavoritePlacesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to WorkLocation.find(work_location_id), status: :see_other, notice: "Favorite place was successfully destroyed." }
       format.json { head :no_content }
+      format.turbo_stream
     end
   end
 
