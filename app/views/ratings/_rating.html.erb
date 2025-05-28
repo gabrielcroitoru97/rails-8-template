@@ -4,7 +4,7 @@
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h5 class="mb-0"><strong><%= rating.user.username %></strong></h5>
         <div class="btn-group">
-          <% if rating.user = current_user%>
+          <% if rating.user == current_user%>
             <%= link_to "Edit", edit_rating_path(rating), class: "btn btn-sm btn-outline-secondary", data: { turbo_stream: true } %>
             <%= button_to "Delete", rating_path(rating), method: :delete,
                   data: { turbo_confirm: "Are you sure?" },

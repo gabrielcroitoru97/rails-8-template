@@ -29,8 +29,9 @@
       <% end %>
     </tbody>
   </table>
-
-  <div class="text-center mt-3">
-    <%= link_to "New Work Location", new_work_location_path, class: "btn btn-primary" %>
-  </div>
+  <% if user_signed_in?%>
+    <div class="text-center mt-3">
+      <%= link_to "New Work Location", new_work_location_path, class: "btn btn-primary" %>
+    </div>
+  <% end %>
 </div>

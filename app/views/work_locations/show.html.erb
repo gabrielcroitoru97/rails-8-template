@@ -1,18 +1,21 @@
 <p style="color: green"><%= notice %></p>
 
+<h4 class="mb-4 text-center"><%= @work_location.name %></h4>
+<%= render "work_locations/carosel", work_location: @work_location%>
 <%= render @work_location %>
 
-<div class="mb-4 text-center">
-  <%= link_to "Edit this work location", edit_work_location_path(@work_location) %>
-</div>
+<% if user_signed_in?%>
+  <div class="mb-4 text-center">
+    <%= link_to "Edit this work location", edit_work_location_path(@work_location) %>
+  </div>
+<% end%>
 
 <div>
 
   <%= render "work_locations/favorites", work_location: @work_location%>
-
-
-
-  <%= render "ratings/form", rating: Rating.new(location_id: @work_location.id)%>
+  <% if user_signed_in?%>
+    <%= render "ratings/form", rating: Rating.new(location_id: @work_location.id)%>
+  <% end %>
   
   <div class="text-center">
     <h2>Ratings</h2>

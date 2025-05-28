@@ -50,7 +50,7 @@ class WorkLocation < ApplicationRecord
 
   has_many  :comments, foreign_key: "location_id", dependent: :destroy
   has_many  :ratings, foreign_key: "location_id", dependent: :destroy
-  has_many  :images, foreign_key: "location_id", dependent: :destroy
+  has_many :images, through: :ratings
   has_many  :favorite_places, foreign_key: "place_id", dependent: :destroy
   belongs_to :owner, class_name: "User"
   belongs_to :location_type

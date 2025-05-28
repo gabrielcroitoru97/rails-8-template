@@ -15,6 +15,12 @@
     <%= form.collection_select :location_type_id, LocationType.all, :id, :descriptor, { prompt: "Select a location type" }, class: "form-select" %>
   </div>
 
+    <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+
   <div class="mb-3">
     <%= form.label :address, class: "form-label" %>
     <%= form.text_field :address, class: "form-control" %>
@@ -45,10 +51,6 @@
     <%= form.text_field :website, class: "form-control" %>
   </div>
 
-  <div class="mb-3">
-    <%= form.label :name, class: "form-label" %>
-    <%= form.text_field :name, class: "form-control" %>
-  </div>
 
   <div class="mb-3">
     <%= form.label :description, class: "form-label" %>
